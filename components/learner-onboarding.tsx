@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
   heroMark: { alignItems: "center", alignSelf: "center", backgroundColor: "#2563EB", borderRadius: 26, height: 72, justifyContent: "center", marginBottom: 22, width: 72 },
   intro: { alignItems: "center", gap: 8, marginBottom: 28 },
   eyebrow: { color: "#2563EB", fontSize: 11, fontWeight: "800", letterSpacing: 1.2 },
-  heading: { color: "#1E293B", fontSize: 27, fontWeight: "800", lineHeight: 34, textAlign: "center" },
+  heading: { color: "#FFFFFF", fontSize: 27, fontWeight: "800", lineHeight: 34, textAlign: "center" },
   subtitle: { color: "#64748B", fontSize: 15, lineHeight: 22, maxWidth: 320, textAlign: "center" },
   form: { gap: 11 },
   label: { color: "#334155", fontSize: 14, fontWeight: "700", marginTop: 5 },

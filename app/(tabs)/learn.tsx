@@ -49,6 +49,6 @@ const styles = StyleSheet.create({
   header: { paddingBottom: 16, paddingTop: 10 },
   iconWrap: { alignItems: "center", backgroundColor: "#DBEAFE", borderRadius: 16, height: 50, justifyContent: "center", marginBottom: 13, width: 50 },
   eyebrow: { color: "#2563EB", fontSize: 11, fontWeight: "800", letterSpacing: 1.1, marginBottom: 7 },
-  title: { color: "#1E293B", fontSize: 27, fontWeight: "800", lineHeight: 34, marginBottom: 8 },
-  subtitle: { color: "#64748B", fontSize: 15, lineHeight: 22 },
+  title: { color: "#FFFFFF", fontSize: 27, fontWeight: "800", lineHeight: 34, marginBottom: 8 },
+  subtitle: { color: "#CBD5E1", fontSize: 15, lineHeight: 22 },
 });

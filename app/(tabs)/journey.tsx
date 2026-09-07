@@ -63,7 +63,7 @@ export default function JourneyScreen() {
 const styles = StyleSheet.create({
   content: { gap: 12, paddingBottom: 28, paddingTop: 12 },
   eyebrow: { color: "#7C3AED", fontSize: 11, fontWeight: "800", letterSpacing: 1.1, marginBottom: 7 },
-  title: { color: "#1E293B", fontSize: 27, fontWeight: "800", lineHeight: 34, marginBottom: 8 },
+  title: { color: "#FFFFFF", fontSize: 27, fontWeight: "800", lineHeight: 34, marginBottom: 8 },
   subtitle: { color: "#64748B", fontSize: 14, lineHeight: 21 },
   statsRow: { flexDirection: "row", gap: 9, marginBottom: 24, marginTop: 20 },
   statCard: { alignItems: "center", backgroundColor: "#FFFFFF", borderColor: "#E2E8F0", borderRadius: 17, borderWidth: 1, flex: 1, gap: 2, paddingHorizontal: 4, paddingVertical: 12 },

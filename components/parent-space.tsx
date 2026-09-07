@@ -168,7 +168,7 @@ const styles = StyleSheet.create({
   primaryText: { color: "#FFFFFF", fontSize: 16, fontWeight: "800" },
   dashboardContent: { gap: 17, paddingBottom: 32, paddingTop: 12 },
   dashboardHeader: { alignItems: "flex-start", flexDirection: "row", justifyContent: "space-between" },
-  dashboardTitle: { color: "#1E293B", fontSize: 25, fontWeight: "800", lineHeight: 32, maxWidth: 275 },
+  dashboardTitle: { color: "#FFFFFF", fontSize: 25, fontWeight: "800", lineHeight: 32, maxWidth: 275 },
   lockButton: { alignItems: "center", backgroundColor: "#EDE9FE", borderRadius: 14, height: 42, justifyContent: "center", width: 42 },
   dashboardCopy: { color: "#64748B", fontSize: 14, lineHeight: 21, marginTop: -9 },
   metricsRow: { flexDirection: "row", gap: 9 },
