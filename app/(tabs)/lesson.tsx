@@ -22,6 +22,25 @@ export default function LessonScreen() {
   const meta = SUBJECT_META[question.subject];
   const correct = selected === question.answer;
 
+  const mathSequence = [
+    "g1-math-add",
+    "g1-math-subtract",
+    "g1-math-missing-number",
+    "g1-math-compare",
+    "g1-math-word-problem",
+    "g1-math-make-ten",
+  ];
+
+  const mathIndex = mathSequence.indexOf(question.id);
+  const nextMathQuestionId =
+    learner.grade === 1 &&
+    question.subject === "Math" &&
+    mathIndex >= 0 &&
+    mathIndex < mathSequence.length - 1
+      ? mathSequence[mathIndex + 1]
+      : undefined;
+
+
   const handleCheck = () => {
     if (!selected || submitted) return;
     recordAttempt({ questionId: question.id, subject: question.subject, answer: selected, isCorrect: correct, usedHint: hintShown });
@@ -106,10 +125,30 @@ export default function LessonScreen() {
           )}
           <Pressable
             disabled={!selected && !submitted}
-            onPress={submitted ? () => router.replace("./journey") : handleCheck}
+            onPress={
+                submitted
+                  ? () => {
+                      if (nextMathQuestionId) {
+                        setSelected(null);
+                        setHintShown(false);
+                        setSubmitted(false);
+                        router.replace({
+                          pathname: "./lesson",
+                          params: { questionId: nextMathQuestionId },
+                        });
+                      } else {
+                        router.replace("./journey");
+                      }
+                    }
+                  : handleCheck
+              }
             style={({ pressed }) => [styles.primaryButton, (!selected && !submitted) && styles.primaryDisabled, pressed && (selected || submitted) && styles.pressed]}
           >
-            <Text style={styles.primaryText}>{submitted ? "See my learning path" : "Check my answer"}</Text>
+            <Text style={styles.primaryText}>{submitted
+                  ? nextMathQuestionId
+                    ? "Next question"
+                    : "See my learning path"
+                  : "Check my answer"}</Text>
             <MaterialIcons name={submitted ? "arrow-forward" : "check"} size={20} color="#FFFFFF" />
           </Pressable>
         </View>
