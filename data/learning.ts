@@ -121,6 +121,68 @@ const QUESTION_BANK: Record<Grade, TutorQuestion[]> = {
       hint: "This helper uses a fire truck and special safety gear.",
       explanation: "Firefighters help protect people and places when there is a fire.",
     },
+
+    {
+      id: "g1-math-subtract",
+      grade: 1,
+      subject: "Math",
+      skill: "Subtract within 20",
+      title: "Snack Time",
+      prompt: "Liam has 13 crackers. He eats 5. How many crackers are left?",
+      choices: ["6", "7", "8", "9"],
+      answer: "8",
+      hint: "Start at 13 and count back 5.",
+      explanation: "13 minus 5 equals 8."
+    },
+    {
+      id: "g1-math-missing-number",
+      grade: 1,
+      subject: "Math",
+      skill: "Missing numbers",
+      title: "Number Train",
+      prompt: "What number is missing? 6, 7, __, 9",
+      choices: ["5", "8", "10", "11"],
+      answer: "8",
+      hint: "Count forward one number at a time.",
+      explanation: "The number after 7 is 8."
+    },
+    {
+      id: "g1-math-compare",
+      grade: 1,
+      subject: "Math",
+      skill: "Compare numbers",
+      title: "Which Is Greater?",
+      prompt: "Which number is greater?",
+      choices: ["12", "17", "9", "6"],
+      answer: "17",
+      hint: "The greater number has the larger value.",
+      explanation: "17 is greater than 12, 9, and 6."
+    },
+    {
+      id: "g1-math-word-problem",
+      grade: 1,
+      subject: "Math",
+      skill: "Addition word problems",
+      title: "Toy Cars",
+      prompt: "Noah has 6 toy cars and gets 4 more. How many toy cars does he have now?",
+      choices: ["8", "9", "10", "11"],
+      answer: "10",
+      hint: "Add 6 and 4 together.",
+      explanation: "6 plus 4 equals 10."
+    },
+    {
+      id: "g1-math-make-ten",
+      grade: 1,
+      subject: "Math",
+      skill: "Make 10",
+      title: "Make Ten",
+      prompt: "What number goes with 7 to make 10?",
+      choices: ["2", "3", "4", "5"],
+      answer: "3",
+      hint: "Count from 7 up to 10.",
+      explanation: "7 plus 3 equals 10."
+    },
+
   ],
   2: [
     {
