@@ -45,6 +45,10 @@ export default function LessonScreen() {
     "g1-writing-sentence",
     "g1-writing-capital",
     "g1-writing-period",
+    "g1-writing-question-mark",
+    "g1-writing-noun",
+    "g1-writing-verb",
+    "g1-writing-word-order",
   ];
 
   const readingIndex = readingSequence.indexOf(question.id);
