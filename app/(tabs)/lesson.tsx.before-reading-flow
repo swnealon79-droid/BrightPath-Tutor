@@ -31,25 +31,7 @@ export default function LessonScreen() {
     "g1-math-make-ten",
   ];
 
-  const readingSequence = [
-    "g1-reading-sound",
-    "g1-reading-rhyme",
-    "g1-reading-vowel",
-    "g1-reading-ending-sound",
-    "g1-reading-sight-word",
-    "g1-reading-main-idea",
-  ];
-
   const mathIndex = mathSequence.indexOf(question.id);
-  const readingIndex = readingSequence.indexOf(question.id);
-  const nextReadingQuestionId =
-    learner.grade === 1 &&
-    question.subject === "Reading" &&
-    readingIndex >= 0 &&
-    readingIndex < readingSequence.length - 1
-      ? readingSequence[readingIndex + 1]
-      : undefined;
-
   const nextMathQuestionId =
     learner.grade === 1 &&
     question.subject === "Math" &&
@@ -57,8 +39,6 @@ export default function LessonScreen() {
     mathIndex < mathSequence.length - 1
       ? mathSequence[mathIndex + 1]
       : undefined;
-  const nextQuestionId = nextMathQuestionId ?? nextReadingQuestionId;
-
 
 
   const handleCheck = () => {
@@ -148,13 +128,13 @@ export default function LessonScreen() {
             onPress={
                 submitted
                   ? () => {
-                      if (nextQuestionId) {
+                      if (nextMathQuestionId) {
                         setSelected(null);
                         setHintShown(false);
                         setSubmitted(false);
                         router.replace({
                           pathname: "./lesson",
-                          params: { questionId: nextQuestionId },
+                          params: { questionId: nextMathQuestionId },
                         });
                       } else {
                         router.replace("./journey");
@@ -165,7 +145,7 @@ export default function LessonScreen() {
             style={({ pressed }) => [styles.primaryButton, (!selected && !submitted) && styles.primaryDisabled, pressed && (selected || submitted) && styles.pressed]}
           >
             <Text style={styles.primaryText}>{submitted
-                  ? nextQuestionId
+                  ? nextMathQuestionId
                     ? "Next question"
                     : "See my learning path"
                   : "Check my answer"}</Text>
