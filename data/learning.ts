@@ -244,6 +244,18 @@ const QUESTION_BANK: Record<Grade, TutorQuestion[]> = {
       explanation: "A thermometer measures temperature, which tells how warm or cold something is.",
     },
     {
+      id: "g1-science-seasons",
+      grade: 1,
+      subject: "Science",
+      skill: "Seasons",
+      title: "Changing Seasons",
+      prompt: "Which season is usually the coldest?",
+      choices: ["Spring", "Summer", "Fall", "Winter"],
+      answer: "Winter",
+      hint: "Think about the season when snow is most common.",
+      explanation: "Winter is usually the coldest season.",
+    },
+    {
       id: "g1-social-help",
       grade: 1,
       subject: "Social Studies",
