@@ -41,6 +41,12 @@ export default function LessonScreen() {
   ];
 
   const mathIndex = mathSequence.indexOf(question.id);
+  const writingSequence = [
+    "g1-writing-sentence",
+    "g1-writing-capital",
+    "g1-writing-period",
+  ];
+
   const readingIndex = readingSequence.indexOf(question.id);
   const nextReadingQuestionId =
     learner.grade === 1 &&
@@ -57,7 +63,16 @@ export default function LessonScreen() {
     mathIndex < mathSequence.length - 1
       ? mathSequence[mathIndex + 1]
       : undefined;
-  const nextQuestionId = nextMathQuestionId ?? nextReadingQuestionId;
+  const writingIndex = writingSequence.indexOf(question.id);
+  const nextWritingQuestionId =
+    learner.grade === 1 &&
+    question.subject === "Writing" &&
+    writingIndex >= 0 &&
+    writingIndex < writingSequence.length - 1
+      ? writingSequence[writingIndex + 1]
+      : undefined;
+
+  const nextQuestionId = nextMathQuestionId ?? nextReadingQuestionId ?? nextWritingQuestionId;
 
 
 
