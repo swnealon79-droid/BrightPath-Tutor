@@ -4,7 +4,7 @@ import { useMemo, useState } from "react";
 import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 
 import { ScreenContainer } from "@/components/screen-container";
-import { getQuestionById, SUBJECT_META } from "@/data/learning";
+import { getQuestionById, getQuestionsForGrade, SUBJECT_META } from "@/data/learning";
 import { useLearning } from "@/lib/learning-store";
 
 export default function LessonScreen() {
@@ -21,62 +21,14 @@ export default function LessonScreen() {
   if (!ready || !learner || !question) return null;
   const meta = SUBJECT_META[question.subject];
   const correct = selected === question.answer;
-
-  const mathSequence = [
-    "g1-math-add",
-    "g1-math-subtract",
-    "g1-math-missing-number",
-    "g1-math-compare",
-    "g1-math-word-problem",
-    "g1-math-make-ten",
-  ];
-
-  const readingSequence = [
-    "g1-reading-sound",
-    "g1-reading-rhyme",
-    "g1-reading-vowel",
-    "g1-reading-ending-sound",
-    "g1-reading-sight-word",
-    "g1-reading-main-idea",
-  ];
-
-  const mathIndex = mathSequence.indexOf(question.id);
-  const writingSequence = [
-    "g1-writing-sentence",
-    "g1-writing-capital",
-    "g1-writing-period",
-    "g1-writing-question-mark",
-    "g1-writing-noun",
-    "g1-writing-verb",
-    "g1-writing-word-order",
-  ];
-
-  const readingIndex = readingSequence.indexOf(question.id);
-  const nextReadingQuestionId =
-    learner.grade === 1 &&
-    question.subject === "Reading" &&
-    readingIndex >= 0 &&
-    readingIndex < readingSequence.length - 1
-      ? readingSequence[readingIndex + 1]
+  const subjectQuestions = getQuestionsForGrade(learner.grade).filter(
+    (item) => item.subject === question.subject,
+  );
+  const questionIndex = subjectQuestions.findIndex((item) => item.id === question.id);
+  const nextQuestionId =
+    questionIndex >= 0 && questionIndex < subjectQuestions.length - 1
+      ? subjectQuestions[questionIndex + 1].id
       : undefined;
-
-  const nextMathQuestionId =
-    learner.grade === 1 &&
-    question.subject === "Math" &&
-    mathIndex >= 0 &&
-    mathIndex < mathSequence.length - 1
-      ? mathSequence[mathIndex + 1]
-      : undefined;
-  const writingIndex = writingSequence.indexOf(question.id);
-  const nextWritingQuestionId =
-    learner.grade === 1 &&
-    question.subject === "Writing" &&
-    writingIndex >= 0 &&
-    writingIndex < writingSequence.length - 1
-      ? writingSequence[writingIndex + 1]
-      : undefined;
-
-  const nextQuestionId = nextMathQuestionId ?? nextReadingQuestionId ?? nextWritingQuestionId;
 
 
 
