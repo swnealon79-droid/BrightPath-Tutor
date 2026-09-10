@@ -67,7 +67,11 @@ export function ParentGate({ onUnlock }: ParentGateProps) {
 type ParentDashboardProps = { onLock: () => void };
 
 export function ParentDashboard({ onLock }: ParentDashboardProps) {
-  const { learner, attempts, parentSettings, completeOnboarding, resetLearningData, updateParentSettings } = useLearning();
+  const [showAddChild, setShowAddChild] = useState(false);
+  const [newChildName, setNewChildName] = useState("");
+  const [newChildGrade, setNewChildGrade] = useState<Grade>(1);
+  const [newChildInterests, setNewChildInterests] = useState<string[]>([]);
+  const { learner, learners = [], activeLearnerId, attempts, parentSettings, completeOnboarding, addLearner, switchLearner, removeLearner, resetLearningData, updateParentSettings } = useLearning();
   if (!learner) return null;
 
   const completed = new Set(attempts.map((attempt) => attempt.questionId)).size;
@@ -94,6 +98,36 @@ export function ParentDashboard({ onLock }: ParentDashboardProps) {
           <View><Text style={styles.eyebrow}>FAMILY SPACE</Text><Text style={styles.dashboardTitle}>{learner.nickname}’s learning snapshot</Text></View>
           <Pressable accessibilityLabel="Lock family space" onPress={onLock} style={({ pressed }) => [styles.lockButton, pressed && styles.pressed]}><MaterialIcons name="lock" size={18} color="#5B21B6" /></Pressable>
         </View>
+        <View style={{ gap: 10 }}>
+            <Text style={styles.settingLabel}>Child profiles ({learners.length}/5)</Text>
+            {learners.map((child) => (
+              <Pressable key={child.id} onPress={() => switchLearner(child.id)} style={{ padding: 12, borderRadius: 12, borderWidth: 1, borderColor: child.id === activeLearnerId ? "#2563EB" : "#CBD5E1", backgroundColor: child.id === activeLearnerId ? "#DBEAFE" : "#FFFFFF" }}>
+                <Text style={{ fontWeight: "800", color: "#1E3A8A" }}>{child.nickname}</Text>
+                <Text style={{ color: "#475569" }}>Grade {child.grade}</Text>
+              </Pressable>
+            ))}
+          </View>
+
+        <Pressable
+            disabled={learners.length >= 5}
+            onPress={() => setShowAddChild(true)}
+            style={({ pressed }) => [
+              {
+                padding: 12,
+                borderRadius: 12,
+                alignItems: "center",
+                backgroundColor: learners.length >= 5 ? "#E2E8F0" : "#2563EB",
+              },
+              pressed && learners.length < 5 && styles.pressed,
+            ]}
+          >
+            <Text style={{ color: learners.length >= 5 ? "#64748B" : "#FFFFFF", fontWeight: "800" }}>
+              {learners.length >= 5 ? "Maximum 5 children" : "Add Child"}
+            </Text>
+          </Pressable>
+
+
+
         <Text style={styles.dashboardCopy}>BrightPath uses these local results to suggest small next steps. Review them as a conversation starter, not a scorecard.</Text>
 
         <View style={styles.metricsRow}>
