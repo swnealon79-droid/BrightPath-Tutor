@@ -103,7 +103,7 @@ export function ParentDashboard({ onLock }: ParentDashboardProps) {
             {learners.map((child) => (
               <Pressable key={child.id} onPress={() => switchLearner(child.id)} style={{ padding: 12, borderRadius: 12, borderWidth: 1, borderColor: child.id === activeLearnerId ? "#2563EB" : "#CBD5E1", backgroundColor: child.id === activeLearnerId ? "#DBEAFE" : "#FFFFFF" }}>
                 <Text style={{ fontWeight: "800", color: "#1E3A8A" }}>{child.nickname}</Text>
-                <Text style={{ color: "#475569" }}>Grade {child.grade}</Text>
+                <Text style={{ color: "#475569" }}>Grade {child.grade}</Text><Pressable onPress={()=>Alert.alert("Remove child?",`Remove ${child.nickname} from this family account?`,[{text:"Cancel",style:"cancel"},{text:"Remove",style:"destructive",onPress:()=>removeLearner(child.id)}])} style={{marginTop:8,padding:8,borderRadius:8,backgroundColor:"#FEE2E2",alignItems:"center"}}><Text style={{color:"#B91C1C",fontWeight:"800"}}>Remove Child</Text></Pressable>
               </Pressable>
             ))}
           </View>
@@ -128,6 +128,7 @@ export function ParentDashboard({ onLock }: ParentDashboardProps) {
 
 
 
+          {showAddChild && <View style={{gap:10,padding:12}}><Text style={styles.settingLabel}>Add a Child</Text><TextInput value={newChildName} onChangeText={setNewChildName} placeholder="Child nickname" style={{borderWidth:1,borderColor:"#CBD5E1",borderRadius:10,padding:12}} /><View style={{flexDirection:"row",gap:6}}>{[1,2,3,4,5].map((g)=><Pressable key={g} onPress={()=>setNewChildGrade(g as Grade)} style={{padding:10,borderRadius:10,backgroundColor:newChildGrade===g?"#2563EB":"#E2E8F0"}}><Text style={{color:newChildGrade===g?"#FFFFFF":"#1E293B",fontWeight:"800"}}>{g}</Text></Pressable>)}<Pressable onPress={()=>{if(!newChildName.trim())return;addLearner({nickname:newChildName,grade:newChildGrade,interests:newChildInterests});setNewChildName("");setNewChildGrade(1);setNewChildInterests([]);setShowAddChild(false);}} style={{padding:12,borderRadius:10,alignItems:"center",backgroundColor:"#2563EB"}}><Text style={{color:"#FFFFFF",fontWeight:"800"}}>Save Child</Text></Pressable><Pressable onPress={()=>setShowAddChild(false)} style={{alignItems:"center",padding:8}}><Text style={{color:"#475569",fontWeight:"700"}}>Cancel</Text></Pressable></View></View>}
         <Text style={styles.dashboardCopy}>BrightPath uses these local results to suggest small next steps. Review them as a conversation starter, not a scorecard.</Text>
 
         <View style={styles.metricsRow}>
