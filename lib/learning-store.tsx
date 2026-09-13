@@ -93,6 +93,7 @@ export function LearningProvider({ children }: { children: ReactNode }) {
   const value = useMemo<LearningContextValue>(
     () => ({
       ...state,
+        attempts: state.attempts.filter((a) => a.learnerId === state.activeLearnerId),
       ready,
       completeOnboarding: ({ nickname, grade, interests }) => {
         setState((current) => {
@@ -149,7 +150,7 @@ export function LearningProvider({ children }: { children: ReactNode }) {
           ...current,
           attempts: [
             ...current.attempts,
-            { ...attempt, id: `attempt-${Date.now()}-${Math.random().toString(16).slice(2)}`, completedAt: new Date().toISOString() },
+            { ...attempt, learnerId: current.activeLearnerId ?? current.learner?.id ?? "unknown", id: `attempt-${Date.now()}-${Math.random().toString(16).slice(2)}`, completedAt: new Date().toISOString() },
           ],
         }));
       },

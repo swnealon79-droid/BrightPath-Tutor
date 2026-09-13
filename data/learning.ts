@@ -18,6 +18,7 @@ export type TutorQuestion = {
 
 export type ActivityAttempt = {
   id: string;
+  learnerId: string;
   questionId: string;
   subject: Subject;
   answer: string;
