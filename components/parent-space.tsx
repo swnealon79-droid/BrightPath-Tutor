@@ -103,7 +103,7 @@ export function ParentDashboard({ onLock }: ParentDashboardProps) {
             {learners.map((child) => (
               <Pressable key={child.id} onPress={() => switchLearner(child.id)} style={{ padding: 12, borderRadius: 12, borderWidth: 1, borderColor: child.id === activeLearnerId ? "#2563EB" : "#CBD5E1", backgroundColor: child.id === activeLearnerId ? "#DBEAFE" : "#FFFFFF" }}>
                 <Text style={{ fontWeight: "800", color: "#1E3A8A" }}>{child.nickname}</Text>
-                <Text style={{ color: "#475569" }}>Grade {child.grade}</Text><Pressable onPress={()=>Alert.alert("Remove child?",`Remove ${child.nickname} from this family account?`,[{text:"Cancel",style:"cancel"},{text:"Remove",style:"destructive",onPress:()=>removeLearner(child.id)}])} style={{marginTop:8,padding:8,borderRadius:8,backgroundColor:"#FEE2E2",alignItems:"center"}}><Text style={{color:"#B91C1C",fontWeight:"800"}}>Remove Child</Text></Pressable>
+                <Text style={{ color: "#475569" }}>Grade {child.grade}</Text><Pressable onPress={(e)=>{e.stopPropagation();Alert.alert("Remove child?",`Remove ${child.nickname} from this family account?`,[{text:"Cancel",style:"cancel"},{text:"Remove",style:"destructive",onPress:()=>removeLearner(child.id)}]);}} style={{marginTop:8,padding:8,borderRadius:8,backgroundColor:"#FEE2E2",alignItems:"center"}}><Text style={{color:"#B91C1C",fontWeight:"800"}}>Remove Child</Text></Pressable>
               </Pressable>
             ))}
           </View>
