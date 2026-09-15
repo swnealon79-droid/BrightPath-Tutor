@@ -123,18 +123,6 @@ const QUESTION_BANK: Record<Grade, TutorQuestion[]> = {
       explanation: "Tiny means very small.",
     },
     {
-      id: "g1-reading-vocabulary",
-      grade: 1,
-      subject: "Reading",
-      skill: "Vocabulary",
-      title: "Words in Context",
-      prompt: "The tiny mouse ran under the chair. What does the word tiny mean?",
-      choices: ["Very small", "Very loud", "Very fast", "Very heavy"],
-      answer: "Very small",
-      hint: "Think about another word that means small.",
-      explanation: "Tiny means very small.",
-    },
-    {
       id: "g1-reading-sentences",
       grade: 1,
       subject: "Reading",
